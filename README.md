@@ -1,38 +1,38 @@
-# Extracting Game Resources from a JAR File
+# Медбрат: Ночная смена
 
-To extract game resources from a JAR file, follow these steps:
+Теперь в репозитории есть браузерная версия игры, доступная как статический сайт.
 
-## Requirements
-- Java Runtime Environment (JRE)
-- Archive extraction tool (like WinRAR, 7-Zip, or a command line tool)
+## Общедоступная ссылка (без локального сервера)
+После пуша в GitHub и выполнения workflow GitHub Pages игра будет доступна по ссылке:
+- `https://<ваш-github-username>.github.io/Jdycycgc/`
 
-## Steps to Extract Resources
-1. **Locate the JAR File**: Find the JAR file that contains the game resources. This file is typically located in the game's installation folder.
+> Пример: если username = `alex`, ссылка будет `https://alex.github.io/Jdycycgc/`.
 
-2. **Backup the JAR File**: It's a good idea to create a backup of the original JAR file before making any modifications.
+В репозитории уже добавлен workflow автопубликации:
+- `.github/workflows/deploy-pages.yml`
 
-3. **Use an Extraction Tool**: 
-   - **Graphical Method**: 
-     - Right-click on the JAR file and choose your extraction tool (e.g., "Extract here" with 7-Zip).
-   - **Command Line Method**: You can use the following command:
-     ```bash
-     jar xf yourfile.jar
-     ```
-     Replace `yourfile.jar` with the name of your JAR file.
+## Быстрый локальный запуск (опционально)
+```bash
+python3 -m http.server 8000
+```
+Открыть: `http://localhost:8000`
 
-4. **Access Extracted Files**: After extraction, you will find the resources in your directory. Look for directories like `assets`, `resources`, or similar.
+## Геймплей
+Вы управляете медбратом в больничном коридоре:
+- помогаете пациентам (`+10`),
+- собираете лекарства (`+5`),
+- нельзя пропустить 5 пациентов.
 
-5. **Editing Resources (Optional)**: You can now open, edit, or replace any files. Make sure to maintain the same format while editing.
+Смена длится 60 секунд.
 
-6. **Repackaging the JAR (Advanced)**: If you wish to create a modified JAR file, you can repackage it using:
-   ```bash
-   jar cf newfile.jar -C extracted_directory .
-   ```
-   Replace `extracted_directory` with the path where your extracted files are located.
+## Управление
+- `←` / `→` — движение
+- `P` — пауза
+- `R` — новая смена
+- Кнопки под игрой дублируют действия
 
-## Notes
-- Modifying game files may violate the game's Terms of Service. Please proceed at your own risk.
-- Always check for modding guidelines specific to your game before making changes.
-
-## Conclusion
-By following these steps, you can easily extract, modify, and repackage resources from a JAR file.
+## Файлы
+- `index.html` — веб-игра (HTML/CSS/JS)
+- `.github/workflows/deploy-pages.yml` — автодеплой в GitHub Pages
+- `src/com/medbro/game/NurseShiftMidlet.java` — J2ME MIDlet версия
+- `src/com/medbro/game/ShiftCanvas.java` — логика J2ME версии
